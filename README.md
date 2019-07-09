@@ -1,39 +1,24 @@
-# Project Name
+# WawaMelon
 
-> Project description
+This is a "Reviews" Module of WawaMelon.
 
-## Related Projects
+## Related Modules
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/fec3-galadriel/mike-photo-carousel
+  - https://github.com/fec3-galadriel/matt-item-summary
+  - https://github.com/fec3-galadriel/garrett-related-products
 
-## Table of Contents
-
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
 
 ## Usage
 
 > Some usage instructions
+Ensure you have mysql and node installed.
+You can check by running the command which mysql/which node from inside the terminal.
 
-## Requirements
+Navigate to database, make a copy of "config.example.js" file, rename it to "config.js" and enter your username and password to gain access to MySQL RDBMS on your local machine.
 
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
-
-- Node 6.13.0
-- etc
-
-## Development
-
-### Installing Dependencies
-
-From within the root directory:
-
-```sh
-npm install -g webpack
-npm install
-```
-
+Run in the different terminal windows within the root directory:
+- "npm install"
+- "npm run build:dev"
+- "npm run start:dev"
+- "npm run reset:db" and after "npm run seed:db"
