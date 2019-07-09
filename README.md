@@ -11,7 +11,6 @@ This is a "Reviews" Module of WawaMelon.
 
 ## Usage
 
-> Some usage instructions
 Ensure you have mysql and node installed.
 You can check by running the command which mysql/which node from inside the terminal.
 

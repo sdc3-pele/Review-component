@@ -33,9 +33,9 @@ const createData = async function() {
 
       await connection.query(q, review, (err, result) => {
           if(err) {
-              console.log('Error loading data', err)
+              console.log('Error loading data', err);
           } else {
-              console.log('Successfully loaded data')
+              console.log('Successfully loaded data');
           }
       });
     }
