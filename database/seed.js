@@ -10,11 +10,12 @@ const createData = async function() {
     const body = ['athletic', 'curvy', 'lean', 'muscular', 'petite', 'slim', 'solid'];
     const fit = ['second skin', 'tight', 'snug', 'just right', 'roomy', 'oversized', 'flowy'];
 
+    let str = i.toString();
     let inputs = Math.ceil(Math.random() * 20);
 
     for(let j = 0; j < inputs; j++) {
       let review = {
-          listing_id: i,
+          listing_id: str,
           date: faker.date.past(),
           review_title: faker.lorem.sentence(),
           review_details: faker.lorem.paragraph(),
@@ -26,7 +27,7 @@ const createData = async function() {
           age: (Math.floor(Math.random() * 20)) + 30,
           what_you_liked: faker.lorem.words(),
           what_you_did_not_liked: faker.lorem.sentence(),
-          fit: Math.floor(Math.random() * 7),
+          fit: Math.floor(Math.random() * 7)
       };
 
       let q = "INSERT INTO reviews SET ?";
