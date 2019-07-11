@@ -17,9 +17,11 @@ describe('Test the root path and statuses of API calls', function() {
     request(app).get(`/api/listings?id=${params}`).expect(404);
     done();
   });
+
 });
 
 describe('Test API calls', function() {
+
   test('if there are 100 listings in database and we get them all', () => {
       $.ajax({
           url: 'http://localhost:3004/api/listings',
@@ -29,6 +31,7 @@ describe('Test API calls', function() {
           }
       });
   });
+
   test('if every listing\'s data saved in a right type', () => {
     $.ajax({
         url: 'http://localhost:3001/api/testing',
@@ -50,4 +53,5 @@ describe('Test API calls', function() {
         }
     });
   });
+
 });
