@@ -3,7 +3,6 @@ var request = require('supertest');
 var $ = require('jquery');
 
 var app = express();
-var server;
 
 
 describe('Test the root path and statuses of API calls', function() {
