@@ -4,7 +4,7 @@ USE reviews;
 
 CREATE TABLE reviews(
   id int NOT NULL AUTO_INCREMENT,
-  listing_id int(4) NOT NULL,
+  listing_id varchar(2) NOT NULL,
   date date NOT NULL,
   review_title varchar(300) NOT NULL,
   review_details varchar(500),

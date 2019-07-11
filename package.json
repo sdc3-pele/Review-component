@@ -13,15 +13,19 @@
     "seed:db": "node database/seed.js",
     "reset:db": "mysql -u root < database/schema.sql"
   },
-  "dependencies": {},
+  "dependencies": {
+    "jquery": "^3.4.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.5.0",
     "@babel/preset-env": "^7.5.2",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "faker": "^4.1.0",
+    "morgan": "^1.9.1",
     "mysql": "^2.17.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
