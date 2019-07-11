@@ -9,7 +9,7 @@ class Reviews extends React.Component {
     this.state = {
       reviews: []
     };
-    this.get = this.get.bind(this);
+    this.get = this.getReviews.bind(this);
   }
 
   componentDidMount() {
