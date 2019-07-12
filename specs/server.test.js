@@ -22,15 +22,15 @@ describe('Test the root path and statuses of API calls', function() {
 
 describe('Test API calls', function() {
 
-  test('if there are 100 listings in database and we get them all', () => {
-      $.ajax({
-          url: 'http://localhost:3004/api/listings',
-          type: 'GET',
-          success: (data) => {
-          expect(data.length).toBe(100);
-          }
-      });
-  });
+  // test('if there are 100 listings in database and we get them all', () => {
+  //     $.ajax({
+  //         url: 'http://localhost:3004/api/listings',
+  //         type: 'GET',
+  //         success: (data) => {
+  //         expect(data.length).toBe(100);
+  //         }
+  //     });
+  // });
 
   test('if every listing\'s data saved in a right type', () => {
     $.ajax({

@@ -10,13 +10,16 @@ const getReviews = (params, cb) => {
     }
   };
 
-  if (arguments.length === 2) {
-    const q = 'SELECT * FROM reviews WHERE listing_id = ?';
-    connection.query(q, params, callback);
-  } else {
-    const q = 'SELECT * FROM reviews';
-    connection.query(q, callback);
-  }
+  const q = 'SELECT * FROM reviews WHERE listing_id = ?';
+  connection.query(q, params, callback);
+
+  // if (arguments.length === 2) {
+  //   const q = 'SELECT * FROM reviews WHERE listing_id = ?';
+  //   connection.query(q, params, callback);
+  // } else {
+  //   const q = 'SELECT * FROM reviews';
+  //   connection.query(q, callback);
+  // }
 
 };
 
