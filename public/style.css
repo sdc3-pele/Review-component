@@ -1,49 +1,46 @@
-#summary_container {
-  margin: 30px;
-  border: 1px #ccc solid;
-  padding: 10px;
-  border-radius:15px;
-
-  text-align: center;
-  color: #fff;
-  width: auto;
-  font-family: Calibre,'Helvetica Neue','Helvetica','Roboto','Arial',sans-serif;
+body{
   color: #666666;
-  font-weight: 300;
-  line-height: 1.5;
-}
-
-#filter_row {
-  margin: 10px;
-  border: 1px #ccc solid;
-  padding: 10px;
-  border-radius:15px;
-
-  width: auto;
-  border-bottom:1px gray solid
-}
-
-#reviews_container {
-  margin: 10px;
-  border: 1px #ccc solid;
-  padding: 10px;
-  border-radius:15px;
-
+  padding: 50px;
   font-family: Calibre,'Helvetica Neue','Helvetica','Roboto','Arial',sans-serif;
-  color: #666666;
-  font-weight: 300;
-  line-height: 1.5;
-  text-align: left;
-  font-size: 1rem;
-  font-style: normal;
+  font-size: 10px;
 }
-
-#button {
+.menu{
+  border: 1px solid #999999;
+  color: #777777;
+  font-size: 6px;
+  display: flex;
+  flex-direction: column;
+  position:fixed;
+}
+button:focus{
+  background-color: none;
+}
+button{
+  border: none;
+  background-color: #F6F6F6;
+}
+button:focus{
+  background-color: none;
+}
+.options {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  background-color:white;
+  position: relative;
+}
+.gold {
   color: #938454;
+}
+.extra {
+  margin-left: 50px;
+}
+.uppercase {
+  text-transform: uppercase
+}
+.button {
   border: 1px solid #938454;
   padding: 8px 13px;
-
-  font-family: inherit;
   font-size: 11px;
   font-style: bold;
   font-weight: 500;
@@ -51,13 +48,135 @@
   line-height: 1.2;
 }
 
-#button:hover {
+.button:hover {
   background-color: #938454;
   color: white;
 }
+.button2:focus{
+  background-color: none;
+}
+.red_line {
+  width: 14%;
+  border-bottom:1px red solid;
+  text-align: center
+}
+.dotted_line {
+  text-align: left;
+  border-bottom: 1px #666666 solid;
+  border-width: 1px;
+  border-bottom-style: dotted
+}
+.summary_container {
+  padding: 10px;
+  text-align: center;
+  color: #fff;
+  width: auto;
+  color: #666666;
+  font-weight: 300;
+  line-height: 1.5;
+}
 
-#red_line {
-  width: 35%;
-  margin: auto;
-  border-bottom:1px red solid
+.filter_row {
+  display:flex;
+  flex-direction: row;
+  padding: 10px;
+  overflow: hidden;
+  background-color: #F6F6F6;
+  padding: 20px 20px 20px 40px;
+}
+
+.reviews_container {
+  padding: 10px;
+}
+
+.each_review {
+  display:flex;
+  flex-direction: row;
+  border-bottom:1px #999999 solid;
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+
+.left_block {
+  display: flex;
+  flex-direction: column;
+  flex:1;
+  letter-spacing: 0.15em;
+  line-height: 1.5;
+}
+
+.right_block {
+  display: flex;
+  flex-direction: column;
+  flex:2;
+  text-align: left;
+  line-height: 1.8em;
+  letter-spacing: 0.15em;
+  font-style: bold;
+  line-height: 1.2;
+}
+
+.props1 {
+  color: #999999;
+  font-size: 10px
+}
+
+.props2 {
+  color: #777777;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.big_gap {
+  margin-bottom: 20px;
+}
+
+#average_star_1 {
+  height: 20px;
+  width: 150px;
+  display: inline-block;
+  background-image: url("./images/rating_1.gif");
+  background-position-y: 50%;
+  background-repeat: no-repeat;
+  background-size: 100px;
+}
+#average_star_2 {
+  height: 20px;
+  width: 150px;
+  display: inline-block;
+  background-image: url("./images/rating_2.gif");
+  background-position-y: 50%;
+  background-repeat: no-repeat;
+  background-size: 100px;
+}
+#average_star_3 {
+  height: 20px;
+  width: 150px;
+  display: inline-block;
+  background-image: url("./images/rating_3.gif");
+  background-position-y: 50%;
+  background-repeat: no-repeat;
+  background-size: 100px;
+}
+#average_star_4 {
+  height: 20px;
+  width: 150px;
+  display: inline-block;
+  background-image: url("./images/rating_4.gif");
+  background-position-y: 50%;
+  background-repeat: no-repeat;
+  background-size: 100px;
+}
+#average_star_5 {
+  height: 20px;
+  width: 150px;
+  display: inline-block;
+  background-image: url("./images/rating_5.gif");
+  background-position-y: 50%;
+  background-repeat: no-repeat;
+  background-size: 100px;
+}
+
+.skinny {
+font-weight: 300;
 }

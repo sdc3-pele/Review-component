@@ -3,5 +3,10 @@ module.exports = {
     '@babel/preset-env',
     '@babel/preset-react'
   ],
-  "plugins": ["babel-plugin-styled-components"]
+  "plugins": [
+    "babel-plugin-styled-components",
+    {
+      "ssr": false
+    }
+  ]
 }

@@ -25,8 +25,8 @@ const createData = async function() {
           athletic_type: athletic[Math.floor(Math.random() * athletic.length)],
           body_type: body[Math.floor(Math.random() * body.length)],
           age: (Math.floor(Math.random() * 20)) + 30,
-          what_you_liked: faker.lorem.words(),
-          what_you_did_not_liked: faker.lorem.sentence(),
+          what_you_like: faker.lorem.words(),
+          what_you_did_not_like: faker.lorem.sentence(),
           fit: Math.floor(Math.random() * 7)
       };
 
