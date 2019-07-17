@@ -1,43 +1,18 @@
-body{
+/* body{ this still should apply to review_tittle and review_body and date
   color: #666666;
   padding: 50px;
   font-family: Calibre,'Helvetica Neue','Helvetica','Roboto','Arial',sans-serif;
   font-size: 10px;
-}
-.menu{
+} */
+/* .menu{
   border: 1px solid #999999;
   color: #777777;
   font-size: 6px;
   display: flex;
   flex-direction: column;
   position:fixed;
-}
-button:focus{
-  background-color: none;
-}
-button{
-  border: none;
-  background-color: #F6F6F6;
-}
-button:focus{
-  background-color: none;
-}
-.options {
-  display: flex;
-  flex-direction: column;
-  align-content: flex-start;
-  background-color:white;
-  position: relative;
-}
-.gold {
-  color: #938454;
-}
-.extra {
-  margin-left: 50px;
-}
-.uppercase {
-  text-transform: uppercase
-}
+} */
+
 .button {
   border: 1px solid #938454;
   padding: 8px 13px;
@@ -66,7 +41,7 @@ button:focus{
   border-width: 1px;
   border-bottom-style: dotted
 }
-.summary_container {
+/* .summary_container {
   padding: 10px;
   text-align: center;
   color: #fff;
@@ -74,20 +49,20 @@ button:focus{
   color: #666666;
   font-weight: 300;
   line-height: 1.5;
-}
+} */
 
-.filter_row {
+/* .filter_row {
   display:flex;
   flex-direction: row;
   padding: 10px;
   overflow: hidden;
   background-color: #F6F6F6;
   padding: 20px 20px 20px 40px;
-}
+} */
 
-.reviews_container {
+/* .reviews_container {
   padding: 10px;
-}
+} */
 
 .each_review {
   display:flex;
@@ -97,15 +72,15 @@ button:focus{
   padding-bottom: 30px;
 }
 
-.left_block {
+/* .left_block {
   display: flex;
   flex-direction: column;
   flex:1;
   letter-spacing: 0.15em;
   line-height: 1.5;
-}
+} */
 
-.right_block {
+/* .right_block {
   display: flex;
   flex-direction: column;
   flex:2;
@@ -114,9 +89,9 @@ button:focus{
   letter-spacing: 0.15em;
   font-style: bold;
   line-height: 1.2;
-}
+} */
 
-.props1 {
+/* .props1 {
   color: #999999;
   font-size: 10px
 }
@@ -125,11 +100,8 @@ button:focus{
   color: #777777;
   font-size: 10px;
   font-weight: bold;
-}
+} */
 
-.big_gap {
-  margin-bottom: 20px;
-}
 
 #average_star_1 {
   height: 20px;
@@ -176,7 +148,22 @@ button:focus{
   background-repeat: no-repeat;
   background-size: 100px;
 }
-
-.skinny {
-font-weight: 300;
+/* .options {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  background-color:white;
+  position: relative;
 }
+.gold {
+  color: #938454;
+}
+.extra {
+  margin-left: 50px;
+}
+.uppercase {
+  text-transform: uppercase
+}
+.skinny {
+  font-weight: 300;
+} */

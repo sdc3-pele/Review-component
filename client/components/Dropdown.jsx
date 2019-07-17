@@ -1,4 +1,32 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const DropdownContainer = styled.div``;
+const DropdownButton = styled.button`
+  border: none;
+  background-color: #F6F6F6;
+`;
+const OptionsContainer = styled.div`
+  border: 1px solid #999999;
+  color: #777777;
+  font-size: 6px;
+  display: flex;
+  flex-direction: column;
+  position:fixed;
+`;
+const OptionButton = styled.button`
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  background-color:white;
+  position: relative;
+  border: none;
+
+  :focus{
+    background-color: none
+  }
+`;
+
 
 class Button extends React.Component {
   constructor(props) {
@@ -28,21 +56,21 @@ class Button extends React.Component {
 
   render() {
     return (
-      <div>
-        <button className="options" onClick={this.showMenu}>{this.props.button.name}</button>
+      <DropdownContainer>
+        <DropdownButton onClick={this.showMenu}>{this.props.button.name}</DropdownButton>
 
         {
           this.state.showMenu
             ? (
-              <div className="menu">
-                {this.props.button.options.map(option => <button className="options">{option}</button>)}
-              </div>
+              <OptionsContainer>
+                {this.props.button.options.map(option => <OptionButton>{option}</OptionButton>)}
+              </OptionsContainer>
             )
             : (
               null
             )
         }
-      </div>
+      </DropdownContainer>
     );
   }
 }
