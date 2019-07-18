@@ -30,9 +30,9 @@ const createData = async function() {
           fit: Math.floor(Math.random() * 7)
       };
 
-      let q = "INSERT INTO reviews SET ?";
+      let query = "INSERT INTO reviews SET ?";
 
-      await connection.query(q, review, (err, result) => {
+      await connection.query(query, review, (err, result) => {
           if(err) {
               console.log('Error loading data', err);
           } else {

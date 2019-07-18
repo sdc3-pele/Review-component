@@ -80,14 +80,17 @@ const Span3 = styled.div`
   font-weight: 300;
 `;
 const Span4 = styled.div`
+  flex: 0 0 auto;
   color: #938454;
 `;
-const Span5 = styled.div``;
+const Span5 = styled.div`
+  flex: 1 1 auto;
+`;
 const Date = styled.div`
-  width: 15%;
+  width: 80px;
   border-bottom:1px red solid;
   text-align: center;
-  margin-bottom: 21px;
+  margin-bottom: 20px;
 `;
 const ReviewTitle = styled.div`
   margin-bottom: 20px;

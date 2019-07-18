@@ -10,8 +10,8 @@ const getReviews = (params, cb) => {
     }
   };
 
-  const q = 'SELECT * FROM reviews WHERE listing_id = ?';
-  connection.query(q, params, callback);
+  const query = 'SELECT * FROM reviews WHERE listing_id = ?';
+  connection.query(query, params, callback);
 
   // if (arguments.length === 2) {
   //   const q = 'SELECT * FROM reviews WHERE listing_id = ?';
