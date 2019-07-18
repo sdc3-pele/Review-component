@@ -8,7 +8,8 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "build:dev": "webpack --watch",
+    "build:dev": "webpack --mode development --watch",
+    "build:prod": "webpack --mode production --watch",
     "start:dev": "nodemon server/index.js",
     "seed:db": "node database/seed.js",
     "reset:db": "mysql -u root < database/schema.sql",
@@ -23,12 +24,16 @@
     "@babel/preset-env": "^7.5.2",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
+
     "babel-plugin-styled-components": "^1.10.6",
+
     "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
+
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
+
     "eslint": "^6.0.1",
+
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "jest": "^24.8.0",

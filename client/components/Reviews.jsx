@@ -32,8 +32,8 @@ const ReviewsContainer = styled.div`
   padding: 10px;
 `;
 const Heading = styled.h3`
-text-lign: center;
-border-bottom:1px red solid;
+  text-lign: center;
+  border-bottom:1px red solid;
 `;
 const QforReview = styled.p`
   font-size: 18px;
@@ -41,7 +41,7 @@ const QforReview = styled.p`
   font-style: bold;
   font-weight: 300;
 `;
-const StarsOverall = styled.p`
+const StarsOverall = styled.div`
   margin-left: 50px;
   color: #938454;
 `;
@@ -122,12 +122,10 @@ class Reviews extends React.Component {
   }
 
   componentDidMount() {
-    console.log('inside componentDidMount');
     this.getReviews((err, reviews) => {
       if (err) {
         window.alert('Error reviews not found', err);
       } else {
-        console.log('inside getReviews success case');
         var overall_rating = this.countAverageRating(reviews);
         this.setState({reviews, overall_rating});
       }
@@ -136,14 +134,10 @@ class Reviews extends React.Component {
 
   getReviews(cb) {
     const id = window.location.pathname.split('/')[1];
-    console.log('id is equal to: ', id);
     $.ajax({
       url: `/api/reviews/${id}`,
       success: function(reviews) {
-        console.log('type of data: ', typeof reviews);
         reviews = JSON.parse(reviews);
-        console.log('type of data: ', typeof reviews);
-        console.log(reviews);
         cb(null, reviews);
       },
       error: function(err) {
@@ -193,11 +187,19 @@ class Reviews extends React.Component {
         </SummaryContainer>
 
         <FilterRow>
-          {buttons.map(button => <Dropdown button={button}/>)}
+          {
+            buttons.map((button,i) => {
+              return <Dropdown key={i.toString()} button={button}/>
+            })
+          }
         </FilterRow>
 
          <ReviewsContainer>
-           {reviews.map(obj => <Review starFill={this.starFill} review={obj}/>)}
+          {
+            reviews.map((obj, i) => {
+              return <Review starFill={this.starFill} review={obj} key={i.toString()}/>
+            })
+          }
          </ReviewsContainer>
 
       </MainContainer>
