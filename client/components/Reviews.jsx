@@ -135,10 +135,10 @@ class Reviews extends React.Component {
   }
 
   getReviews(cb) {
-    const id = window.location.pathname.split('/')[3];
+    const id = window.location.pathname.split('/')[1];
     console.log('id is equal to: ', id);
     $.ajax({
-      url: `/api/listings/${id}/reviews`,
+      url: `/api/reviews/${id}`,
       success: function(reviews) {
         console.log('type of data: ', typeof reviews);
         reviews = JSON.parse(reviews);

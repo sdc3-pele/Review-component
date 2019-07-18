@@ -5,6 +5,10 @@ const DropdownContainer = styled.div``;
 const DropdownButton = styled.button`
   border: none;
   background-color: #F6F6F6;
+
+  ::after {
+    content: ' ▼';
+  }
 `;
 const OptionsContainer = styled.div`
   border: 1px solid #999999;
@@ -23,7 +27,7 @@ const OptionButton = styled.button`
   border: none;
 
   :focus{
-    background-color: none
+    border-color: none
   }
 `;
 

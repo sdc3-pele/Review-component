@@ -4,9 +4,6 @@ module.exports = {
     '@babel/preset-react'
   ],
   "plugins": [
-    "babel-plugin-styled-components",
-    {
-      "ssr": false
-    }
+    "babel-plugin-styled-components"
   ]
 }

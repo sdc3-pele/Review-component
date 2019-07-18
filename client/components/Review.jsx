@@ -84,10 +84,10 @@ const Span4 = styled.div`
 `;
 const Span5 = styled.div``;
 const Date = styled.div`
-  width: 14%;
+  width: 15%;
   border-bottom:1px red solid;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 21px;
 `;
 const ReviewTitle = styled.div`
   margin-bottom: 20px;

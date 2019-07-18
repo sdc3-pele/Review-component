@@ -8,7 +8,7 @@ const app = express();
 const port = 3004;
 
 // app.use(express.static('public'));
-app.use('/api/listings/:id', express.static('public'));
+app.use('/:id', express.static('public'));
 
 app.use(morgan('tiny'));
 app.use(cors());
@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 
 
 // get request based on room number
-app.get('/api/listings/:id/reviews', (req, res) => {
+app.get('/api/reviews/:id', (req, res) => {
   console.log(req.params.id);
   getData(req.params.id, (err, reviews) => {
     if (err) {
