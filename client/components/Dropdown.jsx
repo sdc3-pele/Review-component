@@ -16,7 +16,7 @@ const OptionsContainer = styled.div`
   font-size: 6px;
   display: flex;
   flex-direction: column;
-  position:fixed;
+  position: absolute;
 `;
 const OptionButton = styled.button`
   display: flex;
