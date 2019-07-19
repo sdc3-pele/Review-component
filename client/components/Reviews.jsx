@@ -66,7 +66,7 @@ const Average_star_1 = styled.div`
   height: 20px;
   width: 150px;
   display: inline-block;
-  background-image: url("./images/rating_1.gif");
+  background-image: url("https://s3-us-west-1.amazonaws.com/fec.reviews.stars/rating_1.gif");
   background-position-y: 50%;
   background-repeat: no-repeat;
   background-size: 100px;
@@ -75,7 +75,7 @@ const Average_star_2 = styled.div`
   height: 20px;
   width: 150px;
   display: inline-block;
-  background-image: url("./images/rating_2.gif");
+  background-image: url("https://s3-us-west-1.amazonaws.com/fec.reviews.stars/rating_2.gif");
   background-position-y: 50%;
   background-repeat: no-repeat;
   background-size: 100px;
@@ -84,7 +84,7 @@ const Average_star_3 = styled.div`
   height: 20px;
   width: 150px;
   display: inline-block;
-  background-image: url("./images/rating_3.gif");
+  background-image: url("https://s3-us-west-1.amazonaws.com/fec.reviews.stars/rating_3.gif");
   background-position-y: 50%;
   background-repeat: no-repeat;
   background-size: 100px;
@@ -93,7 +93,7 @@ const Average_star_4 = styled.div`
   height: 20px;
   width: 150px;
   display: inline-block;
-  background-image: url("./images/rating_4.gif");
+  background-image: url("https://s3-us-west-1.amazonaws.com/fec.reviews.stars/rating_4.gif");
   background-position-y: 50%;
   background-repeat: no-repeat;
   background-size: 100px;
@@ -102,7 +102,7 @@ const Average_star_5 = styled.div`
   height: 20px;
   width: 150px;
   display: inline-block;
-  background-image: url("./images/rating_5.gif");
+  background-image: url("https://s3-us-west-1.amazonaws.com/fec.reviews.stars/rating_5.gif");
   background-position-y: 50%;
   background-repeat: no-repeat;
   background-size: 100px;
@@ -152,7 +152,6 @@ class Reviews extends React.Component {
   }
 
   starFill(avg) {
-    var str = '';
     if(avg <= 5 && avg > 4) {
       return <Average_star_5></Average_star_5>;
     } else if (avg <= 4 && avg > 3) {
