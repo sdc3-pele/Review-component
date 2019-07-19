@@ -8,6 +8,7 @@ const ReviewContainer = styled.div`
   padding: 50px;
   font-family: Calibre,'Helvetica Neue','Helvetica','Roboto','Arial',sans-serif;
   font-size: 10px;
+  border-bottom: 0.1px #777777 solid;
 `;
 const LeftBlock = styled.div`
   display: flex;
