@@ -1,33 +1,50 @@
-const { Client } = require('pg');
+const knex = require('knex')({
+    client: 'pg',
+    connection: {
+      host : 'localhost',
+      user : 'postgres',
+      password : 'docker',
+      database : 'reviews'
+    }
+})
 
-const client = new Client({
-    user: 'postgres',
-    password: 'docker',
-    host: 'localhost',
-    database: 'reviews',
-    port: 5432,
-});
-
-// Docker connection string
-// docker run --rm --name pg-docker -e POSTGRES_PASSWORD=docker -e POSTGRES_DB=reviews -d -p 5432:5432 -v reviews:$HOME/var/lib/postgresql/data postgres
-client.connect()
-client.query(`DROP TABLE IF EXISTS reviews`)
-client.query("CREATE TABLE reviews(\
-    id SERIAL PRIMARY KEY,\
-    listing_id varchar(2) NOT NULL,\
-    date date NOT NULL,\
-    review_title varchar(300) NOT NULL,\
-    review_details varchar(500),\
-    overall_rating INT NOT NULL,\
-    location varchar(25),\
-    athletic_çtype varchar(25),\
-    body_type varchar(25) NOT NULL,\
-    age INT NOT NULL,\
-    what_you_like varchar(300),\
-    what_you_did_not_like varchar(300),\
-    fit INT\)" , (err, res) => {
-        if(err){
-            console.log(err)
-        }
-        console.log('Connected and created Schema')
+knex.schema.createTable('reviews', (table) => {
+    table.increments('id')
+    table.string('listing_id')
+    table.date('date')
+    table.string('review_title')
+    table.string('review_details')
+    table.interger('overall_rating')
+    table.string('nickname_login')
+    table.string('location')
+    table.string('atheltic_type')
+    table.string('body_type')
+    table.interger('age')
+    table.string('what_you_like')
+    table.string('what_you_dont_like')
+    table.interger('fit')
     });
+
+
+module.exports = knex
+// client.query("CREATE TABLE reviews(\
+//     id SERIAL PRIMARY KEY,\
+//     listing_id varchar(2) NOT NULL,\
+//     date date NOT NULL,\
+//     review_title varchar(300) NOT NULL,\
+//     review_details varchar(500),\
+//     overall_rating INT NOT NULL,\
+//     nickname_login varchar(25) NOT NULL,\
+//     location varchar(25),\
+//     athletic_type varchar(25),\
+//     body_type varchar(25) NOT NULL,\
+//     age INT NOT NULL,\
+//     what_you_like varchar(300),\
+//     what_you_did_not_like varchar(300),\
+//     fit INT\)" , (err, res) => {
+//         if(err){
+//             console.log(err)
+//         }
+//         console.log('Connected and created Schema')
+//     });
+

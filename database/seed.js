@@ -5,6 +5,7 @@ const fs = require('fs')
 
 const createData = async function() {
   let reviews = [];
+  let count = 1;
   for(let i = 0; i < 10; i++) {
     const athletic = ['yogi', 'runner', 'dancer', 'cyclist', 'sweaty generalist'];
     const body = ['athletic', 'curvy', 'lean', 'muscular', 'petite', 'slim', 'solid'];
