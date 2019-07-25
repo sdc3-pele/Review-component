@@ -27,7 +27,7 @@ const createData = async function() {
       };
       reviews.push(review);
     }
-    await knex('reviews').insert(reviews)
+    await knex('reviews').insert(reviews);
   };
 };
 

@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 // const router = require('./routes');
-const getData = require('../database/getData.js');
+const models = require('../database/models.js');
 const app = express();
 const port = 3004;
 
@@ -13,19 +13,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-// get request based on room number
+// get request based on review number
 app.get('/api/reviews/:id', (req, res) => {
-  getData(req.params.id, (err, reviews) => {
-    if (err) {
-      res.status(404);
-      res.end();
-    } else {
-      res.status(200);
-      res.end(JSON.stringify(reviews));
-      // res.send(reviews)
-    }
-  });
-});
+  return models.read(req.params.id)
+    .then(reviews => res.status(200).send(JSON.stringify(reviews)).end())
+    .catch(err => res.status(400).send(err).end())
+    });
 
 // app.get('/api/listings/', (req, res) => {
 //   // let id = ParseInt(req.params.id);
