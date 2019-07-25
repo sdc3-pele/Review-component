@@ -2,7 +2,7 @@ const knex = require('./db.js');
 const faker = require('faker');
 
 const createData = async function() {
-  for(let i = 0; i < 10; i++) {
+  for(let i = 1; i < 100; i++) {
     let reviews = [];
     const athletic = ['yogi', 'runner', 'dancer', 'cyclist', 'sweaty generalist'];
     const body = ['athletic', 'curvy', 'lean', 'muscular', 'petite', 'slim', 'solid'];
