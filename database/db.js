@@ -10,20 +10,21 @@ const knex = require('knex')({
 
 knex.schema.createTable('reviews', (table) => {
     table.increments('id')
-    table.string('listing_id')
+    table.integer('listing_id')
     table.date('date')
-    table.string('review_title')
-    table.string('review_details')
-    table.interger('overall_rating')
+    table.string('review_title', 300)
+    table.string('review_details', 500)
+    table.integer('overall_rating')
     table.string('nickname_login')
-    table.string('location')
-    table.string('atheltic_type')
+    table.string('location', )
+    table.string('athletic_type')
     table.string('body_type')
-    table.interger('age')
-    table.string('what_you_like')
-    table.string('what_you_dont_like')
-    table.interger('fit')
-    });
+    table.integer('age')
+    table.string('what_you_like', 300)
+    table.string('what_you_did_not_like', 300)
+    table.integer('fit')
+  })
+  .then(res => console.log(res)).catch(err=> console.log(err))
 
 
 module.exports = knex
