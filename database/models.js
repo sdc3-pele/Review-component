@@ -1,5 +1,13 @@
-const knex = require('./db.js');
-
+const knex = require('knex')({
+    client: 'pg',
+    connection: {
+      host : 'localhost',
+      user : 'postgres',
+      password : 'docker',
+      database : 'reviews'
+    }
+})
+// const knex = require('./db.js')
 //create
 //revObj is the object with key/value pairs for columns/value that will be udpated
 const newReview = (revObj) => {
