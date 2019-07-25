@@ -1,18 +1,17 @@
-const connection = require('./connect.js');
+// const connection = require('./connect.js');
 const faker = require('faker');
+const { Parser } = require('json2csv');
+const fs = require('fs')
 
 const createData = async function() {
-
-  for(let i = 0; i < 100; i++) {
-
-
+  let reviews = [];
+  let count = 1;
+  for(let i = 0; i < 10; i++) {
     const athletic = ['yogi', 'runner', 'dancer', 'cyclist', 'sweaty generalist'];
     const body = ['athletic', 'curvy', 'lean', 'muscular', 'petite', 'slim', 'solid'];
     const fit = ['second skin', 'tight', 'snug', 'just right', 'roomy', 'oversized', 'flowy'];
-
     let str = i.toString();
     let inputs = Math.ceil(Math.random() * 20);
-
     for(let j = 0; j < inputs; j++) {
       let review = {
           listing_id: str,
@@ -29,19 +28,19 @@ const createData = async function() {
           what_you_did_not_like: faker.lorem.sentence(),
           fit: Math.floor(Math.random() * 7)
       };
-
-      let query = "INSERT INTO reviews SET ?";
-
-      await connection.query(query, review, (err, result) => {
-          if(err) {
-              console.log('Error loading data', err);
-          } else {
-              console.log('Successfully loaded data');
-          }
-      });
+      reviews.push(review);
     }
-
   };
+  let fields = Object.keys(reviews[0])
+  const opts = { fields };
+  jsonParser = new Parser(opts);
+  let csv = jsonParser.parse(reviews)
+  fs.writeFile('data.csv', csv, (err, result) => {
+    if (err){
+      console.log(err)
+    }
+    console.log('CSV file created')
+  })
 };
 
 createData();
