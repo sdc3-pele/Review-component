@@ -2,6 +2,23 @@
 
 This is a "Reviews" Module of WawaMelon.
 
+# API
+
+GET '/api/reviews/:id'
+Returns all reviews corresponding to listing_id
+
+PUT '/api/reviews/:revid'
+Updates the review based on the id (review id)
+Returns the id
+
+POST '/api/reviews/create/'
+Creates a new review, automatically assigned review id.  Input is an object that contains all information relevant to the review.
+Returns id
+
+DELETE '/api/reviews/:revid'
+Deletes review based on id (review id)
+Returns id
+
 ## Related Modules
 
   - https://github.com/fec3-galadriel/mike-photo-carousel
