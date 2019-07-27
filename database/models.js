@@ -31,7 +31,7 @@ const delReview = (revId) => {
 }
 
 module.exports = {
-    create: readReviews,
+    create: newReview,
     read: readReviews,
     update: updateReview,
     delete: delReview

@@ -29,14 +29,14 @@ app.delete('/api/reviews/:revid', (req, res) => {
 app.post('/api/reviews/create/', (req, res) => {
   let revObj = req.body
   return models.create(revObj)
-    .then(newRev => res.status(200).send(JSON.stringify(newRev)).end())
+    .then(newRev => res.status(201).send(JSON.stringify(newRev)).end())
     .catch(err => res.status(400).send(err).end())
 })
 
 app.put('/api/reviews/:revid', (req, res) => {
   let revObj = req.body;
   return models.update(req.params.revid, revObj)
-    .then(updatedRev => res.status(200).send(JSON.stringify(updatedRev)).end())
+    .then(updatedRev => res.status(202).send(JSON.stringify(updatedRev)).end())
     .catch(err => res.status(400).send(err).end())
 })
 // app.get('/api/listings/', (req, res) => {
