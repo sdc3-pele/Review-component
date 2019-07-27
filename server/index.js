@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 // const router = require('./routes');
-const models = require('../database/models.js');
+const models = require('../database/pg/models.js');
 const app = express();
 const port = 3004;
 

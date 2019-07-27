@@ -23,7 +23,6 @@ knex.schema.createTable('reviews', (table) => {
     table.string('what_you_like', 300)
     table.string('what_you_did_not_like', 300)
     table.integer('fit')
-    table.index('id,')
   })
   .then(res => console.log(res)).catch(err=> console.log(err))
 

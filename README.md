@@ -1,6 +1,17 @@
 # WawaMelon
 
 This is a "Reviews" Module of WawaMelon.
+# Instructions
+Run npm install to install modules.
+Run npm build:prod to build the bundle.js using webpack.
+See instructions below for DB configurations.
+Both configurations require docker to be installed.
+
+Postgres configuration
+1. PG server is run with the postgres docker container.  To start the service run: docker run --rm --name pg-docker -e POSTGRES_PASSWORD=docker -e POSTGRES_DB=reviews -d -p 5432:5432 postgres
+2. Run node database/pg/db.js (to create schema and establish connection).
+3. Run node database/pg/seeddb.js (to seed database with 20 mil entries, will take about 30 mintues to run this way).
+4. Run npm start.
 
 # API
 
