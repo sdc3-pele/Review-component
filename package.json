@@ -17,6 +17,7 @@
     "test": "jest --detectOpenHandles"
   },
   "dependencies": {
+    "cassandra-driver": "^4.1.0",
     "jquery": "^3.4.1",
     "json2csv": "^4.5.2",
     "knex": "^0.19.1",
