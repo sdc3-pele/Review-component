@@ -31,7 +31,7 @@ return client.execute(query, values);
 //prodId is an int that represents the product Id
 const readReviews = (prodId) => {
     console.log(prodId)
-    let query = `SELECT * FROM reviews.reviews WHERE listing_id=${prodId} ALLOW FILTERING`;
+    let query = `SELECT * FROM reviews.reviews WHERE listing_id=${prodId}`;
     return client.execute(query);
 }
 //update
