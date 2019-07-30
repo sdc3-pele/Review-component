@@ -45,9 +45,9 @@ const updateReview = (revId, revObj ) => {
 }
 //delete
 //revId is the id for the review
-const delReview = (revId) => {
-    let query = `DELETE FROM reviews WHERE id = ?`;
-    return client.execute(query, revId);   
+const delReview = (revId, prodId) => {
+    let query = `DELETE FROM reviews.reviews WHERE id=${revId}`;
+    return client.execute(query);   
 }
 
 module.exports = {
