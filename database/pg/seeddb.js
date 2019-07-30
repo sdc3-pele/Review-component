@@ -47,19 +47,3 @@ const createData = async function(itemIdStart, itemIdEnd) {
     }
   }
 };
-
-// createData(1, 10000000)
-
-async function threading(){
-  let start = 1;
-  let pArr = [];
-  for (let i = 0; i < 10; i++){
-    pArr.push(createData(start, start+1000000))
-    start+=1000000;
-  }
-  
-  await Promise.all(pArr);
-  // await Promise.all([createData(1, 1000000), createData(1000000,2000000), createData(2000000,3000000), createData(3000000,4000000), createData(4000000,5000000)])
-} 
-
-threading()

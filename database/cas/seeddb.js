@@ -43,9 +43,9 @@ let stream = fs.createWriteStream(__dirname + '/data.csv', writeOpts);
 stream.on('close', function () {
   console.log('All done!');
 })
-stream.on('drain', function () {
-  console.log('draining');
-})
+// stream.on('drain', function () {
+//   console.log('draining');
+// })
 stream.on('error', function () {
   console.log('error');
 })
@@ -55,7 +55,7 @@ stream.on('pause', function(){
 stream.on('finish', function(){
   console.log('write finished')
 })
-const createData = function(numData) {
+const createData = async function(numData) {
   console.log('Generating CSV with ' + numData + ' products')
   console.time('csvtimer')
   let generator = batchReviews();
@@ -64,7 +64,9 @@ const createData = function(numData) {
     if (numData % 1000 === 0) console.log(numData);
     // if (numData % 10000 === 0) stream.drain();
     for (let i = 0; i < reviews.length; i++){
-      stream.write(Object.values(reviews[i]).join(',') + '\r\n');
+       if(!stream.write(Object.values(reviews[i]).join(',') + '\r\n')){
+         await new Promise(resolve => stream.once('drain', resolve));
+       };
     }
     numData--
   }
@@ -100,7 +102,7 @@ const createData = function(numData) {
 //   console.timeEnd('csvtimer')
 // };
 
-createData(100000);
+createData(5000000);
 
 //docker cp data.csv cas-docker:/
 // COPY reviews("id", "listing_id", "date", "review_title", "review_details", "overall_rating", "nickname_login", "location", "athletic_type", "body_type", "age", "what_you_like", "what_you_did_not_like", "fit") FROM 'data.csv'

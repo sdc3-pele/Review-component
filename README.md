@@ -22,7 +22,7 @@ Cassandra configuration
 3. Run node database/cas/seeddb.js this will generate a CSV that has 20mil rows, (will take about 16mins to run)
 4. Copy the CSV file to the Cassandra docker container using docker cp database/cas/data.csv cas-docker:/
 5. Initiate the copying of the CSV to the database by running:
-    docker exec cas-docker cqlsh -k bidbuy -e "COPY reviews("id", "listing_id", "date", "review_title", "review_details", "overall_rating", "nickname_login", "location", "athletic_type", "body_type", "age", "what_you_like", "what_you_did_not_like", "fit") FROM 'data.csv'"
+    docker exec cas-docker cqlsh -e "COPY reviews.reviews("id", "listing_id", "date", "review_title", "review_details", "overall_rating", "nickname_login", "location", "athletic_type", "body_type", "age", "what_you_like", "what_you_did_not_like", "fit") FROM 'data.csv'"
 6. Run npm start.
 
 # API
