@@ -3,3 +3,5 @@ config.js
 bundle.js
 .DS_Store
 database/cas/data.csv
+data.csv
+database/data.csv
