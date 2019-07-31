@@ -51,9 +51,8 @@ const createDataInsert = async function(numData) {
 };
 
 
-
+//runs seed and exits node container
   createDataInsert(process.env.NUM_ENTRIES)
     .then(async () => await knex)
     .then(()=> console.timeEnd('csvtimer')).catch(err=> console.log(err))
     .then(()=> process.exit(0))
-}
