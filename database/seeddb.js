@@ -1,9 +1,7 @@
 require('dotenv').config()
 const faker = require('faker');
-const util = require('util')
-const exec = util.promisify(require('child_process').exec);
 const fs = require('fs');
-const knex = require('./pg/db.js');
+const knex = require('./db.js');
 
 function batchReviews(){
   let count = 1;
@@ -50,56 +48,12 @@ const createDataInsert = async function(numData) {
     }
   }
   return Promise.resolve(true);
-
 };
 
-//Creating a CSV
-const createDataCsv = async function(numData) {
-  let stream = fs.createWriteStream(__dirname + '/data.csv');
-  stream.on('close', function () {
-    console.log('CSV Writing Complete!');
-  })
-  // stream.on('drain', function () {
-  //   console.log('draining');
-  // })
-  stream.on('error', function () {
-    console.log('error writing CSV file');
-  })
-  stream.on('pause', function(){
-    console.log('stream paused')
-  })
-  console.log('Generating CSV with ' + numData + ' products')
-  console.time('csvtimer')
-  let generator = batchReviews();
-  while (numData > 0){
-    let reviews = generator(numData);
-    if (numData % 1000 === 0) console.log(numData);
-    for (let i = 0; i < reviews.length; i++){
-       if(!stream.write(Object.values(reviews[i]).join(',') + '\r\n')){
-         await new Promise(resolve => stream.once('drain', resolve));
-       };
-    }
-    numData--
-  }
-  // fs.writeFileSync('data.csv', csv);
-  // stream.end()
-  return Promise.resolve(true);
-};
 
-if (process.env.DB === 'pg'){
-  createDataCsv(process.env.NUM_ENTRIES)
+
+  createDataInsert(process.env.NUM_ENTRIES)
     .then(async () => await knex)
-    .then(async () => {
-      console.log(`Copying to ${process.env.PG_DOCKER_NAME} container`)
-      await exec(`docker cp ${__dirname}/data.csv ${process.env.PG_DOCKER_NAME}:/`)
-    })
-    .then(async()=> {
-      console.log('Importing into postgres DB')
-      await exec(`docker exec ${process.env.PG_DOCKER_NAME} psql -U postgres reviews -c "\\copy reviews from data.csv with (format 'csv');"`);
-    })
     .then(()=> console.timeEnd('csvtimer')).catch(err=> console.log(err))
     .then(()=> process.exit(0))
 }
-
-//docker cp data.csv cas-docker:/
-// COPY reviews("id", "listing_id", "date", "review_title", "review_details", "overall_rating", "nickname_login", "location", "athletic_type", "body_type", "age", "what_you_like", "what_you_did_not_like", "fit") FROM 'data.csv'

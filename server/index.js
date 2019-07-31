@@ -2,10 +2,9 @@ require('dotenv').config()
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-// const router = require('./routes');
-const models = require(`../database/${process.env.DB}/models.js`);
+const models = require('./controller.js');
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 app.use('/:id', express.static('public'));
 
