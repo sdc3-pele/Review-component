@@ -3,9 +3,7 @@ const faker = require('faker');
 const fs = require('fs');
 const knex = require('./db.js');
 
-function batchReviews(){
-  let count = 1;
-  return function generateReviews(itemId, numReviews = 2){
+function generateReviews(itemId, numReviews = 2){
     let reviews = [];
     const athletic = ['yogi', 'runner', 'dancer', 'cyclist', 'sweaty generalist'];
     const body = ['athletic', 'curvy', 'lean', 'muscular', 'petite', 'slim', 'solid'];
@@ -13,7 +11,6 @@ function batchReviews(){
     let inputs = numReviews;
     for(let j = 0; j < inputs; j++) {
       let review = {
-          id: count,
           listing_id: itemId,
           date: faker.date.past().toJSON().replace(',',''),
           review_title: faker.lorem.sentence(),
@@ -29,19 +26,16 @@ function batchReviews(){
           fit: Math.floor(Math.random() * 7)
       };
       reviews.push(review);
-      count++
     }
   return reviews;
-  }
 }
 
 //inserting with batchInsert
 const createDataInsert = async function(numData) {
   console.time('csvtimer')
   let grouped = [];
-  let generator = batchReviews();
   for (let i = 1; i < numData; i++){
-    grouped = grouped.concat(generator(i));
+    grouped = grouped.concat(generateReviews(i));
     if (i % 1000 === 0){
       await knex.batchInsert('reviews', grouped, 2000).then(res=> console.log(res)).catch(err=>console.log(err))
       grouped = [];
@@ -53,6 +47,5 @@ const createDataInsert = async function(numData) {
 
 //runs seed and exits node container
   createDataInsert(process.env.NUM_ENTRIES)
-    .then(async () => await knex)
     .then(()=> console.timeEnd('csvtimer')).catch(err=> console.log(err))
     .then(()=> process.exit(0))

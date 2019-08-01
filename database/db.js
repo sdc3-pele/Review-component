@@ -8,7 +8,7 @@ const knex = require('knex')({
     }
 })
 
-let up = knex.schema.hasTable('reviews').then(function(exists) {
+knex.schema.hasTable('reviews').then(function(exists) {
   if (!exists) {
     return knex.schema.createTable('reviews', (table) => {
       table.increments('id').unique()

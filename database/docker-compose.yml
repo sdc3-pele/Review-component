@@ -6,13 +6,12 @@ services:
       container_name: seeddb
       depends_on:
         - postgres
-      ports:
-        - "3004:3004"
       links: 
         - postgres
       networks: 
         - service
-      command: node seeddb.js
+      command: ["wait-for-it/wait-for-it.sh", "postgres:5432", "--", "node", "seeddb.js"]
+
 
   postgres:
       image: postgres
