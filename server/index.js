@@ -7,6 +7,7 @@ const routes = require('./controller.js');
 const app = express();
 const port = process.env.PORT || 3004;
 
+app.use('/', express.static('public'));
 app.use('/:id', express.static('public'));
 
 app.use(morgan('tiny'));
