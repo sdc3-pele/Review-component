@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config({ path: '../.env' });
 const faker = require('faker');
 const fs = require('fs');
 const knex = require('./db.js');
@@ -65,7 +65,7 @@ knex.schema.hasTable('reviews').then(function(exists) {
       table.integer('fit')
     })
   }
-}).then(()=> {return createDataInsert(process.env.NUM_ENTRIES = 10000)})
+}).then(()=> {return createDataInsert(process.env.NUM_ENTRIES)})
   .then(()=> console.timeEnd('csvtimer'))
   .catch(err=> console.log(err))
   // .then(()=> process.exit(0))
