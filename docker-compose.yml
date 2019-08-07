@@ -1,16 +1,16 @@
 version: '3'
 
 services:
-  seed:
+  express:
       build: .
-      container_name: seeddb
+      container_name: express
+      ports:
+        - "3004:3004"
       depends_on:
         - postgres
       links: 
         - postgres
-      networks: 
-        - service
-      command: ["wait-for-it/wait-for-it.sh", "postgres:5432", "--", "node", "seeddb.js"]
+      command: ["wait-for-it/wait-for-it.sh", "postgres:5432", "--" ,"node", "server/index.js"]
 
 
   postgres:
@@ -21,12 +21,6 @@ services:
         POSTGRES_DB: reviews 
       ports:
         - "5432:5432"
-      networks:
-        - service
       restart: always
-
-networks:
-  service:
-    driver: "bridge"
 
       

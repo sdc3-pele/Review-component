@@ -12,7 +12,7 @@
     "build:prod": "webpack --mode production",
     "start:dev": "nodemon server/index.js",
     "start": "node server/index.js",
-    "seed:db": "node database/seed.js",
+    "seed:db": "node database/seeddb.js",
     "reset:db": "mysql -u root < database/schema.sql",
     "test": "jest --detectOpenHandles"
   },

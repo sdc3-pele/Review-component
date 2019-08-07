@@ -46,6 +46,26 @@ const createDataInsert = async function(numData) {
 
 
 //runs seed and exits node container
-  createDataInsert(process.env.NUM_ENTRIES)
-    .then(()=> console.timeEnd('csvtimer')).catch(err=> console.log(err))
-    .then(()=> process.exit(0))
+knex.schema.hasTable('reviews').then(function(exists) {
+  if (!exists) {
+    return knex.schema.createTable('reviews', (table) => {
+      table.increments('id').unique()
+      table.integer('listing_id').index()
+      table.date('date')
+      table.string('review_title', 300)
+      table.string('review_details', 500)
+      table.integer('overall_rating')
+      table.string('nickname_login')
+      table.string('location', )
+      table.string('athletic_type')
+      table.string('body_type')
+      table.integer('age')
+      table.string('what_you_like', 300)
+      table.string('what_you_did_not_like', 300)
+      table.integer('fit')
+    })
+  }
+}).then(()=> {return createDataInsert(process.env.NUM_ENTRIES = 10000)})
+  .then(()=> console.timeEnd('csvtimer'))
+  .catch(err=> console.log(err))
+  // .then(()=> process.exit(0))
