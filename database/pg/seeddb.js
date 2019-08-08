@@ -1,20 +1,24 @@
-// const connection = require('./connect.js');
 const faker = require('faker');
-const { Parser } = require('json2csv');
-const fs = require('fs')
+const knex = require('knex')({
+  client: 'pg',
+  connection: {
+    host : 'localhost',
+    user : 'postgres',
+    password : 'docker',
+    database : 'reviews'
+  },
+  pool: {min:0, max: 20}
+})
 
-const createData = async function() {
-  let reviews = [];
-  let count = 1;
-  for(let i = 0; i < 10; i++) {
+function generateReviews(itemId, numReviews = 2){
+    let reviews = [];
     const athletic = ['yogi', 'runner', 'dancer', 'cyclist', 'sweaty generalist'];
     const body = ['athletic', 'curvy', 'lean', 'muscular', 'petite', 'slim', 'solid'];
     const fit = ['second skin', 'tight', 'snug', 'just right', 'roomy', 'oversized', 'flowy'];
-    let str = i.toString();
-    let inputs = Math.ceil(Math.random() * 20);
+    let inputs = numReviews;
     for(let j = 0; j < inputs; j++) {
       let review = {
-          listing_id: str,
+          listing_id: itemId,
           date: faker.date.past(),
           review_title: faker.lorem.sentence(),
           review_details: faker.lorem.paragraph(),
@@ -30,17 +34,16 @@ const createData = async function() {
       };
       reviews.push(review);
     }
-  };
-  let fields = Object.keys(reviews[0])
-  const opts = { fields };
-  jsonParser = new Parser(opts);
-  let csv = jsonParser.parse(reviews)
-  fs.writeFile('data.csv', csv, (err, result) => {
-    if (err){
-      console.log(err)
-    }
-    console.log('CSV file created')
-  })
-};
+  return reviews;
+}
 
-createData();
+const createData = async function(itemIdStart, itemIdEnd) {
+  let grouped = [];
+  for (let i = itemIdStart; i < itemIdEnd; i++){
+    grouped = grouped.concat(generateReviews(i));
+    if (i % 1000 === 0){
+      await knex.batchInsert('reviews', grouped, 2000).then(res=> console.log(res)).catch(err=>console.log(err))
+      grouped = [];
+    }
+  }
+};

@@ -1,9 +1,9 @@
-require('dotenv').config()
+// const connection = require('./connect.js');
 const faker = require('faker');
-const util = require('util')
-const exec = util.promisify(require('child_process').exec);
+const { Parser } = require('json2csv');
 const fs = require('fs');
-const knex = require('./pg/db.js');
+
+
 
 function batchReviews(){
   let count = 1;
@@ -37,43 +37,32 @@ function batchReviews(){
   }
 }
 
-//inserting with batchInsert
-const createDataInsert = async function(numData) {
-  console.time('csvtimer')
-  let grouped = [];
-  let generator = batchReviews();
-  for (let i = 1; i < numData; i++){
-    grouped = grouped.concat(generator(i));
-    if (i % 1000 === 0){
-      await knex.batchInsert('reviews', grouped, 2000).then(res=> console.log(res)).catch(err=>console.log(err))
-      grouped = [];
-    }
-  }
-  return Promise.resolve(true);
 
-};
-
-//Creating a CSV
-const createDataCsv = async function(numData) {
-  let stream = fs.createWriteStream(__dirname + '/data.csv');
-  stream.on('close', function () {
-    console.log('CSV Writing Complete!');
-  })
-  // stream.on('drain', function () {
-  //   console.log('draining');
-  // })
-  stream.on('error', function () {
-    console.log('error writing CSV file');
-  })
-  stream.on('pause', function(){
-    console.log('stream paused')
-  })
+let writeOpts = {highWaterMark: Math.pow(2,1)};
+let stream = fs.createWriteStream(__dirname + '/data.csv', writeOpts);
+stream.on('close', function () {
+  console.log('All done!');
+})
+// stream.on('drain', function () {
+//   console.log('draining');
+// })
+stream.on('error', function () {
+  console.log('error');
+})
+stream.on('pause', function(){
+  console.log('stream paused')
+})
+stream.on('finish', function(){
+  console.log('write finished')
+})
+const createData = async function(numData) {
   console.log('Generating CSV with ' + numData + ' products')
   console.time('csvtimer')
   let generator = batchReviews();
   while (numData > 0){
     let reviews = generator(numData);
     if (numData % 1000 === 0) console.log(numData);
+    // if (numData % 10000 === 0) stream.drain();
     for (let i = 0; i < reviews.length; i++){
        if(!stream.write(Object.values(reviews[i]).join(',') + '\r\n')){
          await new Promise(resolve => stream.once('drain', resolve));
@@ -83,23 +72,37 @@ const createDataCsv = async function(numData) {
   }
   // fs.writeFileSync('data.csv', csv);
   // stream.end()
-  return Promise.resolve(true);
+  console.timeEnd('csvtimer')
 };
 
-if (process.env.DB === 'pg'){
-  createDataCsv(process.env.NUM_ENTRIES)
-    .then(async () => await knex)
-    .then(async () => {
-      console.log(`Copying to ${process.env.PG_DOCKER_NAME} container`)
-      await exec(`docker cp ${__dirname}/data.csv ${process.env.PG_DOCKER_NAME}:/`)
-    })
-    .then(async()=> {
-      console.log('Importing into postgres DB')
-      await exec(`docker exec ${process.env.PG_DOCKER_NAME} psql -U postgres reviews -c "\\copy reviews from data.csv with (format 'csv');"`);
-    })
-    .then(()=> console.timeEnd('csvtimer')).catch(err=> console.log(err))
-    .then(()=> process.exit(0))
-}
+
+// const createDataSync = function(numData) {
+//   console.log('Generating CSV with ' + numData + ' products')
+//   console.time('csvtimer')
+//   let generator = batchReviews();
+//   let csv = '';
+//   while (numData > 0){
+//     let reviews = generator(numData);
+//     if (numData % 100000 === 0) console.log(numData);
+//     // if (numData % 10000 === 0) stream.drain();
+//     for (let i = 0; i < reviews.length; i++){
+//       csv += Object.values(reviews[i]).join(',') + '\r\n'
+//     }
+//     if (numData % 100000){
+//       fs.writeFile('data.csv', csv, (err) => {
+//         if (err) throw err;
+//         console.log('The file has been saved!');
+//       });      
+//       csv ='';
+//     }
+//     numData--
+//   }
+//   // fs.writeFileSync('data.csv', csv);
+//   // stream.end()
+//   console.timeEnd('csvtimer')
+// };
+
+createData(5000000);
 
 //docker cp data.csv cas-docker:/
 // COPY reviews("id", "listing_id", "date", "review_title", "review_details", "overall_rating", "nickname_login", "location", "athletic_type", "body_type", "age", "what_you_like", "what_you_did_not_like", "fit") FROM 'data.csv'
