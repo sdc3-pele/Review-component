@@ -1,12 +1,13 @@
 require('dotenv').config()
+require('newrelic');
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-// const router = require('./routes');
-const models = require(`../database/${process.env.DB}/models.js`);
+const routes = require('./controller.js');
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 3004;
 
+app.use('/', express.static('public'));
 app.use('/:id', express.static('public'));
 
 app.use(morgan('tiny'));
@@ -15,20 +16,12 @@ app.use(bodyParser.json());
 
 
 // get request based on review number
-app.get('/api/reviews/:id', models.read)
+app.get('/api/reviews/:id', routes.read)
 
-app.delete('/api/reviews/:revid', (req, res) => {
-  return models.delete(req.params.revid)
-})
+app.delete('/api/reviews/:revid', routes.delete)
 
-app.post('/api/reviews/create/', (req, res) => {
-  let revObj = req.body
-  return models.create(revObj);
-})
+app.post('/api/reviews/create/', routes.create);
 
-app.put('/api/reviews/:revid', (req, res) => {
-  let revObj = req.body;
-  return models.update(req.params.revid, revObj);
-})
+app.put('/api/reviews/:revid', routes.update);
 
 app.listen(port, () => console.log('listening on: ', port));

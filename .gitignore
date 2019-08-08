@@ -5,3 +5,4 @@ bundle.js
 database/cas/data.csv
 data.csv
 database/data.csv
+database/node_modules

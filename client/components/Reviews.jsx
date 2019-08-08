@@ -124,7 +124,7 @@ class Reviews extends React.Component {
   componentDidMount() {
     this.getReviews((err, reviews) => {
       if (err) {
-        window.alert('Error reviews not found', err);
+        console.log('Error reviews not found', err);
       } else {
         var overall_rating = this.countAverageRating(reviews);
         this.setState({reviews, overall_rating});
